@@ -18,10 +18,8 @@ if($Native){
     if($LocalCompiler){& "$PSScriptRoot/build-native-local.ps1";$nativeOutput=Join-Path $CamberProjectRoot 'native/build-msvc-local'}
     else {
         & "$PSScriptRoot/bootstrap.ps1"
-        RunChecked {cmake -S native -B native/build-msvc -G 'Visual Studio 17 2022' -A x64}
-        RunChecked {cmake --build native/build-msvc --config Release}
-        RunChecked {ctest --test-dir native/build-msvc -C Release --output-on-failure}
-        $nativeOutput=Join-Path $CamberProjectRoot 'native/build-msvc/Release'
+        & "$PSScriptRoot/build-native-installed.ps1"
+        $nativeOutput=Join-Path $CamberProjectRoot 'native/build-installed'
     }
     foreach($name in @('Camber.Media.exe','Camber.Camera.dll','libwebrtc.dll','Camber.UpgradeCheck.exe')){
         Copy-Item -LiteralPath (Join-Path $nativeOutput $name) -Destination $implementation -Force
