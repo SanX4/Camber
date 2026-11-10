@@ -8,9 +8,10 @@ phone camera through a Windows virtual camera. This build adds automatic phone
 rotation, synchronized quality settings, local image presets and smaller packages.
 No comparative quality or end-to-end latency advantage has been certified.
 
-**Distribution is blocked.** Windows service routing and two-account isolation,
-real-phone rotation/quality/privacy testing, installer lifecycle tests, independent
-security review, signing and owner approval remain required. Read the
+**Development source; production distribution is not certified.** The owner has
+reported successful meeting-app, installer and cross-account checks and authorized
+uploading this source. Independent security review, production signing and the
+remaining certification/evidence checks are still required. Read the
 [current status](docs/STATUS.md) and [checklist](docs/CHECKLIST-0.9.md).
 
 ## Find the application

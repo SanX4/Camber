@@ -1,5 +1,16 @@
 # November 10 validation and publication decision
 
+## Owner follow-up: source upload authorized
+
+On November 10, the owner reported that meeting-app, installer and cross-account
+checks are OK and explicitly requested pushing the project to SanX4/Camber.
+These are owner-reported results; detailed independent test evidence was not
+provided. The owner authorizes this development source upload. The remaining
+production-signing, certification and distribution limitations below still apply;
+this update does not mark the automated release evidence gate as passed.
+
+The earlier no-push decision below records the state before this follow-up.
+
 **Decision: do not push or publish this candidate yet.** The user requested
 publication to a new `SanX4/Camber` repository with releases only if every
 required test passes. Several mandatory checks remain incomplete. No repository
