@@ -6,14 +6,16 @@ $locator=Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio/Installer/v
 if(!(Test-Path -LiteralPath $locator)){throw 'Install Visual Studio C++ tools and the Windows SDK.'}
 $installation=& $locator -latest -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 if(!$installation){throw 'No supported Visual Studio C++ installation was found.'}
-$developer=Join-Path $installation 'Common7/Tools/VsDevCmd.bat'
-$environment=& $env:ComSpec /d /s /c ('""'+$developer+'" -no_logo -arch=x64 -host_arch=x64 && set"')
-if($LASTEXITCODE -ne 0){throw 'Visual Studio environment initialization failed.'}
-foreach($line in $environment) {
-    if($line -match '^(PATH|INCLUDE|LIB|LIBPATH|WindowsSdkDir|WindowsSDKVersion|VCToolsInstallDir|VSCMD_ARG_TGT_ARCH)=(.*)$') {
-        [Environment]::SetEnvironmentVariable($Matches[1],$Matches[2],'Process')
-    }
-}
+$vc=Get-ChildItem (Join-Path $installation 'VC/Tools/MSVC') -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName
+$sdk=Join-Path ${env:ProgramFiles(x86)} 'Windows Kits/10'
+$sdkVersion=Get-ChildItem (Join-Path $sdk 'Include') -Directory | Where-Object {Test-Path (Join-Path $_.FullName 'um/mfvirtualcamera.h')} | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty Name
+if(!$vc -or !$sdkVersion){throw 'MSVC and a Windows 11 SDK are required.'}
+# Import only the compiler/SDK paths, matching the portable compiler workflow;
+# avoid batch environment initialization differences across runner images.
+$env:PATH="$vc/bin/Hostx64/x64;$sdk/bin/$sdkVersion/x64;"+$env:PATH
+$env:INCLUDE="$vc/include;$sdk/Include/$sdkVersion/ucrt;$sdk/Include/$sdkVersion/shared;$sdk/Include/$sdkVersion/um;$sdk/Include/$sdkVersion/winrt;$sdk/Include/$sdkVersion/cppwinrt"
+$env:LIB="$vc/lib/x64;$sdk/Lib/$sdkVersion/ucrt/x64;$sdk/Lib/$sdkVersion/um/x64"
+$env:VSCMD_ARG_TGT_ARCH='x64'
 Push-Location $projectRoot
 try {
     # Ninja supports the installed MSVC toolchain without hard-coding a Visual
