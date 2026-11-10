@@ -27,7 +27,7 @@ public:
 int main() {
     CoInitializeEx(nullptr,COINIT_MULTITHREADED);
     const auto name=L"Local\\Camber.GeneratedVideoTest."+std::to_wstring(GetCurrentProcessId());
-    const auto acl=std::wstring(L"D:P(A;;GA;;;SY)(A;;GA;;;LS)(A;;GA;;;")+camber::CurrentUserSid()+L")";
+    const auto acl=std::wstring(L"O:")+camber::CurrentUserSid()+L"D:P(A;;GA;;;SY)(A;;GA;;;LS)(A;;GA;;;"+camber::CurrentUserSid()+L")";
     PSECURITY_DESCRIPTOR descriptor=nullptr;
     if(!ConvertStringSecurityDescriptorToSecurityDescriptorW(acl.c_str(),SDDL_REVISION_1,&descriptor,nullptr))return 2;
     SECURITY_ATTRIBUTES security{sizeof(security),descriptor,FALSE};

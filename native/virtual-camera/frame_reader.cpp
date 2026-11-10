@@ -27,7 +27,11 @@ bool FrameReader::EnsureMapping() {
     if(!camber::OwnerConsistentWithActivation(ownerSid_))return false;
     if(view_) return true;
     if(ownerSid_.empty()||mappingName_.empty()) return false;
-    const std::wstring acl=std::wstring(L"D:P(A;;GA;;;SY)(A;;GA;;;LS)(A;;GA;;;")+ownerSid_+L")";
+    // Elevated tokens can default new objects to the Administrators group.
+    // Assign the creator's actual user/service SID explicitly; keep the same
+    // protected ACL and existing-object owner validation.
+    const auto creator=camber::CurrentUserSid();if(creator.empty())return false;
+    const std::wstring acl=std::wstring(L"O:")+creator+L"D:P(A;;GA;;;SY)(A;;GA;;;LS)(A;;GA;;;"+ownerSid_+L")";
     PSECURITY_DESCRIPTOR descriptor=nullptr;
     if(!ConvertStringSecurityDescriptorToSecurityDescriptorW(acl.c_str(),SDDL_REVISION_1,&descriptor,nullptr)) return false;
     SECURITY_ATTRIBUTES security{sizeof(security),descriptor,FALSE};
