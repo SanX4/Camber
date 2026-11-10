@@ -1,0 +1,112 @@
+Requirement,Description,Status,Evidence
+PL-01,Maintained Windows 11 x64,Partial,Desktop builds; supported-release matrix pending
+PL-02,Android 10 minimum,Implemented,minSdk 29; APK built
+PL-03,iOS 17 minimum,Source,Xcode project specification; Mac build pending
+PL-04,Camera and H264 capability,Partial,H264 camera paths; hardware certification pending
+PL-05,Runtime camera capabilities,Partial,Camera enumeration; full capability exchange pending
+PL-06,Certified device list,Pending,No physical devices certified
+PL-07,Intel AMD NVIDIA testing,Pending,Physical matrix required
+PL-08,Prerequisite checks,Partial,Installer OS gate; runtime repair checks pending
+ON-01,Signed Windows installer,Source,Inno Setup and signing script; credentials required
+ON-02,Runtimes and camera registration,Source,Self-contained app; native DLL installer action
+ON-03,Admin only for installation,Source,Elevated installer; unprivileged normal host
+ON-04,Play and App Store distribution,External,Developer accounts and review required
+ON-05,Three-action onboarding,Implemented,Connect screen and README
+ON-06,Contextual camera and network permission,Partial,Phone manifests and requests; device verification pending
+ON-07,Permission-denied guidance,Partial,Status messages; Android settings deep link pending
+ON-08,Camera test and app selection guidance,Partial,Native preview command; per-app help pending
+ON-09,Keep existing microphone,Implemented,Desktop and phone copy; no mic permission
+ON-10,Resumable setup,Partial,Protected enrollment and reconnect; all restart cases pending
+CN-01,Local account-free operation,Implemented,Local TLS and WebRTC; no cloud configuration
+CN-02,QR pairing,Implemented,Desktop QR; phone scanners; real-server pairing checks
+CN-03,Authenticated QR payload,Implemented,Identity endpoint fingerprint and 256-bit secret
+CN-04,Two-minute single use,Verified,Core and server replay tests
+CN-05,Discovery with verification,Pending,No discovery or comparison-code flow
+CN-06,Remember rename revoke,Partial,Protected records and revoke; rename pending
+CN-07,Remember multiple phones,Partial,Windows stores multiple; selected stream policy implemented
+CN-08,Explicit active phone replacement,Verified,Core state test and one socket policy
+CN-09,Address adapters VPN IPv6,Partial,Host listens dual-stack; UI currently IPv4 selection
+CN-10,Network-specific troubleshooting,Partial,Static help; automatic classification pending
+CN-11,Private scoped firewall,Source,Installer private profile and local subnet rules
+CN-12,Automatic brief reconnect,Pending,Manual reconnect currently; state model allows recovery
+CN-13,Fresh approval after privacy boundary,Partial,Core verified; Windows and phone hooks need physical tests
+CN-14,Protocol compatibility,Partial,Pair version rejection; full negotiated handshake pending
+CA-01,Front rear switching,Source,Desktop configuration and native phone commands
+CA-02,Stable virtual camera on switch,Source,One source identity; physical consumer verification pending
+CA-03,Remember rear camera selection,Partial,Rear default; preference persistence pending
+CA-04,720p30 and 1080p30,Source,Capture and output mode definitions; device tests pending
+CA-05,Certified optional 1080p60,Deferred,Not advertised without certification
+CA-06,Autofocus and exposure,Partial,Platform autofocus default; exposure control pending
+CA-07,Locks zoom and torch,Pending,Manual controls not implemented
+CA-08,Unsupported control visibility,Partial,Unsupported advanced controls omitted
+CA-09,Always automatic physical orientation without manual controls,Partial,Orientation policy and native portrait/rotation tests pass; physical four-angle certification pending
+CA-10,Fit Fill framing,Source,Desktop request and native transform
+CA-11,Separate front preview mirroring,Pending,Independent preview transform needs implementation
+CA-12,Outgoing mirror setting,Source,Desktop and native worker setting
+CA-13,Aspect color rotation correctness,Partial,Image tests pass; color metadata and physical checks pending
+CA-14,SDR output,Source,8-bit I420 and NV12
+CA-15,Requested versus actual mode,Pending,Full applied capability validation pending
+CA-16,Camera interruptions,Partial,Phone background stops; detailed interruptions pending
+CA-17,Start Pause Resume Stop,Partial,Start Pause Stop; PC resume approval and UI polish pending
+CA-18,Release camera on pause,Source,Phone capture disposal and native privacy gate
+WC-01,Per-user named camera,Verified,Installed per-user camera enumerated and delivered neutral NV12 frame through Frame Server
+WC-02,Stable identity,Source,Fixed Camber COM class and friendly name
+WC-03,Negotiated launch modes,Source,Media source advertises 720p30 and 1080p30
+WC-04,NV12 RGB32 fallback,Partial,NV12 implemented; RGB32 fallback pending
+WC-05,Stable consumer output,Source,Media source scales incoming frames to consumer mode
+WC-06,Change input without reopen,Source,Native transformation path; consumer tests pending
+WC-07,Timestamps and pacing,Source,Media Foundation delivery thread; frame pacing certification pending
+WC-08,Neutral state images,Partial,Neutral black output; labeled status frames pending
+WC-09,One-second stale cutoff,Source,Native frame reader threshold
+WC-10,Tray operation,Partial,Running desktop tray verified; video-under-minimize tests pending
+WC-11,Separate preview and consumers,Pending,Sensor activity integration required
+WC-12,Five-second demand timeout,Partial,Core policy tested; native consumer-demand wiring pending
+WC-13,Concurrent consumers,Pending,Frame Server compatibility tests required
+WC-14,Independent consumer lifecycle,Pending,Physical multi-app tests required
+WC-15,Windows privacy,Partial,Platform API and settings link; blocked-access diagnostics pending
+SE-01,Encrypted authenticated transport,Partial,TLS pairing verified; WebRTC media runtime pending
+SE-02,Bind media to paired session,Source,Authenticated socket and generation-gated forwarding
+SE-03,Pairing separate from consent,Verified,Core and real-server checks
+SE-04,Persistent sharing state,Source,Phone sharing labels and Stop controls
+SE-05,Easy Stop,Implemented,Header tray and phone controls
+SE-06,Immediate privacy output,Partial,Core fence verified; native timing test pending
+SE-07,Replay revoke malformed requests,Partial,Core and server replay checks; fuzzing pending
+SE-08,Pairing rate limits,Verified,Five failures per minute test
+SE-09,Protected key storage,Partial,DPAPI tested through host; phone keystore/keychain runtime pending
+SE-10,Cross-user local isolation,Source,CurrentUserOnly pipe and restricted native mapping ACL
+SE-11,Bounded untrusted input,Partial,Message and dimension bounds; full fuzzing pending
+SE-12,No default recording,Implemented,No recording path
+SE-13,No secrets in logs,Partial,Host logging disabled; dependency logging audit pending
+SE-14,Redacted user export,Implemented,User-selected plain diagnostic summary
+SE-15,Crash upload consent,Implemented,No crash upload configured
+SE-16,Authentic updates,Pending,No updater or release endpoint configured
+SE-17,Revoke and delete data,Partial,Device revoke and phone forget; full data deletion UI pending
+RE-01,Battery and thermal status,Pending,No device telemetry exchange yet
+RE-02,Idle demand reduction,Partial,Core policy; consumer integration pending
+RE-03,Stage-specific stall detection,Partial,Measured numeric telemetry wired to capture and sender policy; real-device fault tests pending
+RE-04,Decoder GPU recovery,Pending,CPU baseline only; native recovery not verified
+RE-05,Stop after PC disappearance,Source,Socket errors dispose camera; physical watchdog tests pending
+RE-06,iPhone foreground and dim,Partial,Foreground and idle-timer behavior; dimming pending
+RE-07,Phone lock requires resume,Source,Background privacy stop and new approval
+RE-08,Windows lifecycle,Source,Host lock suspend logoff disconnect hooks
+RE-09,Reconnect cannot override Pause,Verified,Core regression test
+RE-10,One recovery attempt,Partial,Single socket; automatic recovery not implemented
+OP-01,Repair and clean uninstall,Partial,Installer unregisters DLL and rules; per-user camera removal pending
+OP-02,Updates wait for idle,Pending,Updater not configured
+OP-03,Preserve upgrades,Partial,Versioned protocol; protected records; migration tests pending
+OP-04,Failed-update recovery,Pending,Updater not configured
+OP-05,About licenses help export,Partial,Version privacy help and export; complete in-app license view pending
+OP-06,Dependency inventory,Partial,Pinned direct packages and notices; transitive SBOM pending
+OP-07,Localization-ready English,Pending,English implemented; strings extraction pending
+OP-08,Publish limitations and device results,Partial,Local release docs; no public site or certified results
+OP-09,Public issue reporting,External,Repository hosting and reporting destination not configured
+VQ-01,Original default and optional Natural/LowLight GPU presets,Partial,Deterministic shader tests pass; real-camera quality review pending
+VQ-02,Synchronized requested and applied quality controls,Partial,Generation/request ID tests pass; live two-app certification pending
+VQ-03,Real sender ceilings and capture adaptation,Partial,Sender/control implementation and policy tests pass; network and thermal device testing pending
+VQ-04,Missing metrics remain unknown and recovery has hysteresis,Implemented,Counter and quality-policy tests including missing recovery stages pass
+VQ-05,Bounded frame-local processing and safe Original fallback,Implemented,GPU/noise/endpoint/failure/budget tests pass; synthetic p95 report
+VQ-06,Stop remains immediate during blocked processing,Implemented,Generated receiver test blocks compositor and verifies cutoff under 100 ms
+PK-01,Preserved source and historical builds with verified restoration,Implemented,240 source and 3425 historical files restored and hash checked
+PK-02,Architecture APKs plus universal and complete AAB,Partial,Static native/model parity and signatures verified; per-device execution pending
+PK-03,Reduced Windows payload with offline prerequisite and stable launcher,Partial,Build and layout checks pass; controlled install/upgrade/repair/uninstall pending
+PK-04,Single version definition and latest build index,Implemented,Directory.Build.props drives managed/native/Android/package metadata

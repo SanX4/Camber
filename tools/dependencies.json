@@ -1,0 +1,27 @@
+{
+  "dotnetSdk": "10.0.403",
+  "windowsSdkBuildTools": "10.0.26100.4654",
+  "libwebrtcWindows": {
+    "tag": "libwebrtc.m150.7871.06",
+    "url": "https://github.com/webrtc-sdk/libwebrtc/releases/download/libwebrtc.m150.7871.06/libwebrtc-win-x64-release.zip",
+    "sha256": "2a761095adaab51415d7c669e85df8e71d9aeb0d8199475fb8a88444af994179"
+  },
+  "libwebrtcAndroid": "150.7871.04",
+  "mediaPipeAndroid": "0.10.35",
+  "gestureModel": {
+    "url": "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
+    "sha256": "97952348cf6a6a4915c2ea1496b4b37ebabc50cbbf80571435643c455f2b0482"
+  },
+  "libwebrtcApple": "150.7871.01",
+  "libwebrtcAppleArchiveSha256": "03815cdf2f6a0ed328c94d74cce8fd1b8d2b6e95e2b37eab66795012fcecfdfa",
+  "nlohmannJsonCommit": "9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03",
+  "mycamSourceCommit": "c951bbc63ee38c952396debf9790941db3782d2d",
+  "directXTK": {
+    "tag": "may2026",
+    "commit": "5a8f5d01cc1328e6451b588617c9985fa5a2a8ab",
+    "license": "MIT"
+  },
+  "dotnetRuntime": "10.0.14",
+  "windowsAppSdkWinUI": "1.8.260803003",
+  "windowsMsixBuildTools": "1.7.20250829.1"
+}

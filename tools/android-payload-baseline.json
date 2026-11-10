@@ -1,0 +1,19 @@
+{
+  "baseline": "0.8.0-beta.1 universal minified and debug signing certificate",
+  "nativeLibraries": {
+    "lib/arm64-v8a/libandroidx.graphics.path.so": "41e9a793c43a0f4fddb19e33f346bace464f30f888ba7b9eaf96294ea115bfb6",
+    "lib/arm64-v8a/libjingle_peerconnection_so.so": "2b561520298d9fec3e216baf58a53fbddf4a46dfd247880cbc3821875ed20200",
+    "lib/arm64-v8a/libmediapipe_tasks_jni.so": "c0497affbe5c60ddbb61b969403d053ae61d209dc6c7063f38427640c62b8f90",
+    "lib/armeabi-v7a/libandroidx.graphics.path.so": "41399eba6fc2a60f6f14642375c1824f3cf25eb8fec7397d753730a3ceda3e2b",
+    "lib/armeabi-v7a/libjingle_peerconnection_so.so": "5415e7a02ce83e983329575e7c2e46b8ced6c75baea3c41aa52b5699ccb54eda",
+    "lib/armeabi-v7a/libmediapipe_tasks_jni.so": "13156861846c2ab5924b7c6331bf541dbc9d0918c2c480ede118aca47bf75e2f",
+    "lib/x86/libandroidx.graphics.path.so": "eb0570b41fd3bff25d8204a967c03bd7550719e768b791f680cc40cbe35f29af",
+    "lib/x86/libjingle_peerconnection_so.so": "9a532ef72dcda8b4b9874d4f578dbd3a5eb18bce01f9f91bee883bc0962dce3c",
+    "lib/x86/libmediapipe_tasks_jni.so": "db2d3d3217e5e16a91014d337bbb922fce7e0a66c0eb1b53b097fee1eec91e38",
+    "lib/x86_64/libandroidx.graphics.path.so": "4e56c996f13670e70082658de7880c4020eabf4f25e43387f88ed78a713fc9f0",
+    "lib/x86_64/libjingle_peerconnection_so.so": "b87bbb6d6c81c50f04538cd809575de633a789cc3555af2c5eb6ec414b148908",
+    "lib/x86_64/libmediapipe_tasks_jni.so": "67fe7c45ce672cc65d121996ad3fe2f87c82ab5419fddfcb7210e4771d011ae0"
+  },
+  "gestureModelSha256": "97952348cf6a6a4915c2ea1496b4b37ebabc50cbbf80571435643c455f2b0482",
+  "developmentCertificateSha256": "71a76a7783019f04977f0143d62106d88794791159b00f546e958a817676b226"
+}

@@ -1,0 +1,49 @@
+name: Build and verify
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  windows:
+    # Use a 26100-based host for the Windows 11-era virtual camera imports.
+    # This still does not replace Windows 11 physical/cross-account validation.
+    runs-on: windows-2025
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: 10.0.403
+      - name: Build desktop, host and native camera
+        shell: pwsh
+        run: |
+          python tools/test_beta_evidence.py
+          python tools/check-text-encoding.py
+          ./tools/build.ps1 -Native
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Camber-Windows-development
+          path: artifacts/*/windows
+  android:
+    runs-on: windows-2022
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: '9.3.1'
+      - working-directory: mobile/android
+        run: gradle :app:testDebugUnitTest :app:testInternalUnitTest :app:assembleInternal --console=plain --dependency-verification strict
+      - working-directory: mobile/android
+        run: gradle :app:bundleRelease -PcamberBundle=true --console=plain --dependency-verification strict
+      - run: python tools/beta-readiness.py --apk mobile/android/app/build/outputs/apk/internal/app-arm64-v8a-internal.apk --check-apk-only
+      - name: Check locked app dependencies for advisory matches
+        shell: pwsh
+        run: ./tools/check-maven-advisories.ps1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Camber-Android-development
+          path: mobile/android/app/build/outputs/apk/internal/*.apk

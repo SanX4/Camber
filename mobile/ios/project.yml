@@ -1,0 +1,23 @@
+name: Camber
+options:
+  bundleIdPrefix: camera.camber
+  deploymentTarget:
+    iOS: '17.0'
+packages:
+  WebRTC:
+    url: https://github.com/webrtc-sdk/Specs.git
+    exactVersion: 150.7871.01
+targets:
+  Camber:
+    type: application
+    platform: iOS
+    sources: [Camber]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: camera.camber.ios
+        SWIFT_VERSION: '5.9'
+        TARGETED_DEVICE_FAMILY: '1,2'
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Camber/Info.plist
+    dependencies:
+      - package: WebRTC

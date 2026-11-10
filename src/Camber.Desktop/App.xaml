@@ -1,0 +1,87 @@
+<Application x:Class="Camber.Desktop.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <Application.Resources><ResourceDictionary>
+  <ResourceDictionary.MergedDictionaries><XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/></ResourceDictionary.MergedDictionaries>
+  <ResourceDictionary.ThemeDictionaries>
+   <ResourceDictionary x:Key="Light">
+    <SolidColorBrush x:Key="CamberBackground" Color="#F3F6FA"/>
+    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="#F3F6FA"/><SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#F3F6FA"/>
+    <SolidColorBrush x:Key="CamberSurface" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="CamberSoft" Color="#E6EDF6"/>
+    <SolidColorBrush x:Key="CamberInk" Color="#111820"/>
+    <SolidColorBrush x:Key="CamberMuted" Color="#485B72"/>
+    <SolidColorBrush x:Key="CamberBorder" Color="#C8D3E1"/>
+    <SolidColorBrush x:Key="CamberAccent" Color="#1761B5"/>
+    <SolidColorBrush x:Key="CamberOnAccent" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="CamberAccentSoft" Color="#DBEAFE"/>
+    <SolidColorBrush x:Key="CamberDanger" Color="#A5323C"/>
+    <Color x:Key="CamberPreviewTop">#EDF2F8</Color>
+    <Color x:Key="CamberPreviewBottom">#FFFFFF</Color>
+    <SolidColorBrush x:Key="AccentFillColorDefaultBrush" Color="#1761B5"/>
+    <SolidColorBrush x:Key="AccentFillColorSecondaryBrush" Color="#1C6AC2"/>
+    <SolidColorBrush x:Key="AccentFillColorTertiaryBrush" Color="#0F519A"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorPrimaryBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorSecondaryBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorDisabledBrush" Color="#FFFFFF"/>
+    <Color x:Key="SystemAccentColor">#1761B5</Color>
+    <Color x:Key="SystemAccentColorLight1">#1761B5</Color>
+    <Color x:Key="SystemAccentColorLight2">#1761B5</Color>
+    <Color x:Key="SystemAccentColorLight3">#1761B5</Color>
+    <Color x:Key="SystemAccentColorDark1">#1761B5</Color>
+    <Color x:Key="SystemAccentColorDark2">#1761B5</Color>
+    <Color x:Key="SystemAccentColorDark3">#1761B5</Color>
+   </ResourceDictionary>
+   <ResourceDictionary x:Key="Dark">
+    <SolidColorBrush x:Key="CamberBackground" Color="#0B0E13"/>
+    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="#0B0E13"/><SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#0B0E13"/>
+    <SolidColorBrush x:Key="CamberSurface" Color="#171C24"/>
+    <SolidColorBrush x:Key="CamberSoft" Color="#242C38"/>
+    <SolidColorBrush x:Key="CamberInk" Color="#F0F4FA"/>
+    <SolidColorBrush x:Key="CamberMuted" Color="#B1BDCE"/>
+    <SolidColorBrush x:Key="CamberBorder" Color="#344153"/>
+    <SolidColorBrush x:Key="CamberAccent" Color="#80B8FF"/>
+    <SolidColorBrush x:Key="CamberOnAccent" Color="#071B34"/>
+    <SolidColorBrush x:Key="CamberAccentSoft" Color="#183552"/>
+    <SolidColorBrush x:Key="CamberDanger" Color="#FFB4B4"/>
+    <Color x:Key="CamberPreviewTop">#222A36</Color>
+    <Color x:Key="CamberPreviewBottom">#171C24</Color>
+    <SolidColorBrush x:Key="AccentFillColorDefaultBrush" Color="#80B8FF"/>
+    <SolidColorBrush x:Key="AccentFillColorSecondaryBrush" Color="#97C6FF"/>
+    <SolidColorBrush x:Key="AccentFillColorTertiaryBrush" Color="#6AA7F0"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorPrimaryBrush" Color="#071B34"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorSecondaryBrush" Color="#071B34"/>
+    <SolidColorBrush x:Key="TextOnAccentFillColorDisabledBrush" Color="#071B34"/>
+    <Color x:Key="SystemAccentColor">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorLight1">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorLight2">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorLight3">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorDark1">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorDark2">#80B8FF</Color>
+    <Color x:Key="SystemAccentColorDark3">#80B8FF</Color>
+   </ResourceDictionary>
+   <ResourceDictionary x:Key="HighContrast">
+    <SolidColorBrush x:Key="CamberBackground" Color="{ThemeResource SystemColorWindowColor}"/>
+    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}"/><SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{ThemeResource SystemColorWindowColor}"/>
+    <SolidColorBrush x:Key="CamberSurface" Color="{ThemeResource SystemColorWindowColor}"/>
+    <SolidColorBrush x:Key="CamberSoft" Color="{ThemeResource SystemColorButtonFaceColor}"/>
+    <SolidColorBrush x:Key="CamberInk" Color="{ThemeResource SystemColorWindowTextColor}"/>
+    <SolidColorBrush x:Key="CamberMuted" Color="{ThemeResource SystemColorWindowTextColor}"/>
+    <SolidColorBrush x:Key="CamberBorder" Color="{ThemeResource SystemColorWindowTextColor}"/>
+    <SolidColorBrush x:Key="CamberAccent" Color="{ThemeResource SystemColorHighlightColor}"/>
+    <SolidColorBrush x:Key="CamberOnAccent" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+    <SolidColorBrush x:Key="CamberAccentSoft" Color="{ThemeResource SystemColorButtonFaceColor}"/>
+    <SolidColorBrush x:Key="CamberDanger" Color="{ThemeResource SystemColorWindowTextColor}"/>
+    <Color x:Key="CamberPreviewTop">{ThemeResource SystemColorWindowColor}</Color>
+    <Color x:Key="CamberPreviewBottom">{ThemeResource SystemColorWindowColor}</Color>
+   </ResourceDictionary>
+  </ResourceDictionary.ThemeDictionaries>
+  <LinearGradientBrush x:Key="CamberMetal" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="{ThemeResource CamberPreviewTop}" Offset="0"/><GradientStop Color="{ThemeResource CamberPreviewBottom}" Offset="1"/></LinearGradientBrush>
+  <CornerRadius x:Key="ControlCornerRadius">16</CornerRadius>
+  <CornerRadius x:Key="OverlayCornerRadius">24</CornerRadius>
+  <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{ThemeResource CamberInk}"/><Setter Property="FontSize" Value="15"/></Style>
+  <Style TargetType="Button"><Setter Property="CornerRadius" Value="22"/><Setter Property="MinHeight" Value="44"/><Setter Property="Padding" Value="18,10"/></Style>
+  <Style TargetType="ComboBox"><Setter Property="CornerRadius" Value="14"/><Setter Property="MinHeight" Value="44"/><Setter Property="HorizontalAlignment" Value="Stretch"/></Style>
+  <Style TargetType="Expander"><Setter Property="CornerRadius" Value="24"/><Setter Property="HorizontalAlignment" Value="Stretch"/></Style>
+  <Style x:Key="CamberPrimaryButton" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}"><Setter Property="CornerRadius" Value="24"/><Setter Property="MinHeight" Value="48"/><Setter Property="Padding" Value="24,12"/></Style>
+  <Style x:Key="CamberPanel" TargetType="Border"><Setter Property="CornerRadius" Value="28"/><Setter Property="Padding" Value="24"/><Setter Property="Background" Value="{ThemeResource CamberSurface}"/><Setter Property="BorderBrush" Value="{ThemeResource CamberBorder}"/><Setter Property="BorderThickness" Value="1"/></Style>
+ </ResourceDictionary></Application.Resources>
+</Application>

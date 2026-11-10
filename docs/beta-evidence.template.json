@@ -1,0 +1,135 @@
+{
+  "version": "0.8.0-beta.1",
+  "checks": {
+    "source": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "runtime": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "android16k": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "recognition": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "ui": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "privacy": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "crossUserIsolation": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "independentSecurityReview": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "videoPerformance": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "endurance": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "compatibility": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "installer": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "windowsSigning": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "androidSigning": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "sbom": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "distributionSetup": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    },
+    "ownerApproval": {
+      "status": "blocked",
+      "sha256": "",
+      "path": "",
+      "sourceCommit": "",
+      "candidateHashes": {}
+    }
+  },
+  "sourceCommit": "",
+  "artifacts": {
+    "windowsInstaller": {
+      "path": "",
+      "sha256": ""
+    },
+    "androidBundle": {
+      "path": "",
+      "sha256": ""
+    }
+  }
+}

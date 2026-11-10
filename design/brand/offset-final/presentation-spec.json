@@ -1,0 +1,50 @@
+{
+  "brand": "Camber",
+  "tagline": "Your phone. A better camera.",
+  "brief": "A private phone-to-PC camera utility with a premium, approachable identity for Windows and Android.",
+  "adjectives": [
+    "confident",
+    "fluid",
+    "precise",
+    "distinctive"
+  ],
+  "criteria": "A clear 16px silhouette, one-colour reproduction and consistent native app icons.",
+  "industry": "consumer-app",
+  "mockups": [
+    "app-icon",
+    "website",
+    "social",
+    "favicon-tab",
+    "sticker",
+    "business-card"
+  ],
+  "brand_color": "#80B8FF",
+  "tile_color": "#0B0E13",
+  "greyscale": false,
+  "final": true,
+  "designer": "Camber",
+  "concepts": [
+    {
+      "name": "Offset",
+      "symbol": "camber-symbol.svg",
+      "symbol_on_tile": "camber-symbol.svg",
+      "symbol_on_dark": "camber-symbol.svg",
+      "lockup": "camber-horizontal.svg",
+      "lockup_on_dark": "camber-horizontal-dark.svg",
+      "lockup_on_tile": "camber-horizontal-dark.svg",
+      "stacked": "camber-stacked.svg",
+      "idea": "A rounded field opens into a distinctive C.",
+      "rationale": [
+        "An offset counter gives the silhouette its signature.",
+        "Soft corners echo the native application controls.",
+        "A horizontal opening stays readable at small sizes."
+      ]
+    }
+  ],
+  "recommendation": "Offset is the selected Camber identity.",
+  "next_steps": [
+    "Use the supplied native icons and lockups.",
+    "Retain the small-size drawing at 16-24px.",
+    "Follow the included usage guide."
+  ]
+}

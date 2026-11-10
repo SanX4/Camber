@@ -1,0 +1,119 @@
+<Window x:Class="Camber.Desktop.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Camber Camera">
+ <Grid x:Name="Root" RequestedTheme="Dark" Background="{ThemeResource CamberBackground}" ActualThemeChanged="Root_ActualThemeChanged">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Grid x:Name="HeaderPanel" Padding="32,20" ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+   <Viewbox Width="32" Height="32" AutomationProperties.AccessibilityView="Raw"><Path Fill="{ThemeResource CamberAccent}" Data="M42.45 87.27 L88.27 41.45 C113.73 15.99 144.27 15.99 169.73 41.45 L215.55 87.27 C223.82 95.54 228.91 104.45 231.46 114.64 L172.91 114.64 C170.37 104.45 164.64 94.91 155.73 86.00 C132.18 62.45 100.36 62.45 76.82 86.00 C53.27 109.54 53.27 141.36 76.82 164.91 C100.36 188.46 132.18 188.46 155.73 164.91 C162.73 157.91 168.46 149.64 171.00 140.73 L232.10 140.73 C229.55 150.91 223.82 160.46 215.55 168.73 L169.73 214.55 C144.27 240.01 113.73 240.01 88.27 214.55 L42.45 168.73 C16.99 143.27 16.99 112.73 42.45 87.27 Z"/></Viewbox>
+   <StackPanel Grid.Column="1" Spacing="2"><TextBlock Text="camber" FontSize="26" FontWeight="SemiBold"/><TextBlock Text="Your phone. A better camera." FontSize="13" Foreground="{ThemeResource CamberMuted}"/></StackPanel>
+   <Button x:Name="StopButton" Grid.Column="2" Content="Stop sharing" Click="Stop_Click" IsEnabled="False" Foreground="{ThemeResource CamberDanger}" AutomationProperties.Name="Stop camera sharing immediately"/>
+  </Grid>
+  <NavigationView x:Name="Navigation" Grid.Row="1" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" PaneDisplayMode="Top" Background="{ThemeResource CamberBackground}" SelectionChanged="Navigation_SelectionChanged">
+   <NavigationView.MenuItems>
+    <NavigationViewItem Content="Camera" Tag="camera" Icon="Video" IsSelected="True"/>
+    <NavigationViewItem Content="Connect" Tag="connect" Icon="Link"/>
+    <NavigationViewItem Content="Devices" Tag="devices" Icon="CellPhone"/>
+    <NavigationViewItem Content="Settings" Tag="settings" Icon="Setting"/>
+   </NavigationView.MenuItems>
+   <ScrollViewer x:Name="PageScroll" Background="{ThemeResource CamberBackground}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel x:Name="PageContent" Padding="32,24,32,32" Spacing="24">
+     <InfoBar CornerRadius="20" x:Name="Notice" IsOpen="False" IsClosable="True" Severity="Informational" Title="Connecting to camera service" Message="Your camera stays off until you approve sharing on your phone."/>
+     <Grid x:Name="CameraPage" ColumnSpacing="24" RowSpacing="24" SizeChanged="CameraLayout_SizeChanged">
+      <Grid.ColumnDefinitions><ColumnDefinition x:Name="PreviewColumn" Width="*"/><ColumnDefinition x:Name="ControlsColumn" Width="352"/></Grid.ColumnDefinitions>
+      <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <StackPanel x:Name="PreviewPanel" Spacing="20">
+       <StackPanel Spacing="12">
+        <Border Background="{ThemeResource CamberAccentSoft}" CornerRadius="16" Padding="12,7" HorizontalAlignment="Left"><TextBlock x:Name="SessionStatus" Text="CAMERA OFF" FontSize="12" FontWeight="SemiBold" Foreground="{ThemeResource CamberAccent}" AutomationProperties.LiveSetting="Polite"/></Border>
+        <TextBlock x:Name="SessionHeading" Text="Your camera stays yours." FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap"/>
+       </StackPanel>
+       <Border x:Name="PreviewSurface" Background="{ThemeResource CamberMetal}" BorderBrush="{ThemeResource CamberBorder}" BorderThickness="1" CornerRadius="32" MinHeight="280" Height="340">
+        <Grid>
+         <MediaPlayerElement x:Name="Preview" AreTransportControlsEnabled="False" AutoPlay="True" RenderTransformOrigin="0.5,0.5"><MediaPlayerElement.RenderTransform><ScaleTransform x:Name="PreviewTransform" ScaleX="1"/></MediaPlayerElement.RenderTransform></MediaPlayerElement>
+         <StackPanel x:Name="PreviewEmpty" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16" MaxWidth="360" Padding="24">
+          <Border Background="{ThemeResource CamberBackground}" CornerRadius="36" Width="72" Height="72"><FontIcon Glyph="&#xE714;" FontSize="30" Foreground="{ThemeResource CamberAccent}" AutomationProperties.AccessibilityView="Raw"/></Border>
+          <TextBlock x:Name="PreviewTitle" Text="A better view starts here." FontSize="22" FontWeight="SemiBold" TextAlignment="Center" TextWrapping="Wrap"/>
+          <TextBlock x:Name="PreviewHint" Text="Connect your phone, then choose Camber Camera in your meeting app." Foreground="{ThemeResource CamberMuted}" TextAlignment="Center" TextWrapping="Wrap"/>
+          <Button x:Name="EmptyAction" Content="Connect a phone" Click="EmptyAction_Click" Style="{StaticResource CamberPrimaryButton}" HorizontalAlignment="Center"/>
+         </StackPanel>
+        </Grid>
+       </Border>
+       <Grid x:Name="PreviewFooter" ColumnSpacing="16" RowSpacing="16"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <StackPanel Spacing="4"><TextBlock x:Name="LiveStatus" Text="Connect your phone to get started." TextWrapping="Wrap" FontWeight="SemiBold"/><TextBlock Text="Your existing microphone stays selected." FontSize="13" Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></StackPanel>
+        <StackPanel x:Name="PreviewActions" Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Top"><Button x:Name="PreviewButton" Content="Open preview" Click="Preview_Click"/><Button x:Name="PauseButton" Content="Pause" Click="Pause_Click" IsEnabled="False"/></StackPanel>
+       </Grid>
+       <Border Style="{StaticResource CamberPanel}" Padding="20"><StackPanel Spacing="6"><TextBlock Text="Ready for your next call" FontWeight="SemiBold"/><TextBlock Text="Select Camber Camera in Discord, Meet, Teams or any app with a camera setting." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></StackPanel></Border>
+      </StackPanel>
+      <StackPanel x:Name="ControlsPanel" Grid.Column="1" Spacing="16">
+       <Border Style="{StaticResource CamberPanel}"><StackPanel Spacing="16">
+        <StackPanel Spacing="6"><TextBlock Text="Camera controls" FontSize="20" FontWeight="SemiBold"/><TextBlock x:Name="AppliedCameraText" Text="Choose your view." Foreground="{ThemeResource CamberMuted}" FontSize="13" TextWrapping="Wrap"/></StackPanel>
+        <ComboBox x:Name="CameraChoice" Header="Phone camera" SelectedIndex="0"><ComboBoxItem Content="Rear camera"/><ComboBoxItem Content="Front camera"/></ComboBox>
+        <ComboBox x:Name="QualityChoice" Header="Capture quality" SelectedIndex="0"><ComboBoxItem Content="1080p · 30 fps"/><ComboBoxItem Content="720p · 30 fps"/></ComboBox>
+        <ComboBox x:Name="FitChoice" Header="Framing" SelectedIndex="0"><ComboBoxItem Content="Fit entire image"/><ComboBoxItem Content="Fill frame"/></ComboBox>
+        <Button x:Name="ApplyButton" Content="Apply on phone" Click="Apply_Click" IsEnabled="False" Style="{StaticResource CamberPrimaryButton}" HorizontalAlignment="Stretch"/>
+        <TextBlock x:Name="ApplyHint" Text="Start sharing on your phone to apply camera controls." FontSize="13" Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"/>
+       </StackPanel></Border>
+       <Border Style="{StaticResource CamberPanel}"><StackPanel Spacing="12">
+        <ComboBox x:Name="EnhancementChoice" Header="Improve video" SelectedIndex="0" SelectionChanged="Enhancement_Changed"><ComboBoxItem Content="Original"/><ComboBoxItem Content="Natural"/><ComboBoxItem Content="Low light"/></ComboBox>
+        <Button x:Name="RetryEnhancementButton" Content="Try preset again" Visibility="Collapsed" Click="RetryEnhancement_Click"/>
+        <TextBlock x:Name="EnhancementStatus" Text="No additional image filters." TextWrapping="Wrap" Foreground="{ThemeResource CamberMuted}" AutomationProperties.LiveSetting="Polite"/>
+        <TextBlock x:Name="ActualQualityStatus" Text="Starts only when you share." TextWrapping="Wrap" FontSize="13" Foreground="{ThemeResource CamberMuted}"/>
+       </StackPanel></Border>
+       <Expander Header="Mirroring"><StackPanel Spacing="16">
+        <ToggleSwitch x:Name="MirrorChoice" Header="Mirror outgoing video" OffContent="Natural · text reads normally" OnContent="Mirrored for other apps" Toggled="Visuals_Changed"/>
+        <ToggleSwitch x:Name="PreviewMirrorChoice" Header="Mirror this preview" OffContent="Natural view" OnContent="Mirror view · preview only" Toggled="Visuals_Changed"/>
+       </StackPanel></Expander>
+       <Expander Header="Hand reactions" HorizontalAlignment="Stretch">
+        <StackPanel Spacing="12">
+         <ToggleSwitch x:Name="ReactionsChoice" Header="Animated reactions" IsOn="True" Toggled="Visuals_Changed"/>
+         <ToggleSwitch x:Name="GesturesChoice" Header="Hand gestures" IsOn="True" Toggled="Visuals_Changed"/>
+         <ToggleSwitch x:Name="ReducedMotionChoice" Header="Reduce reaction motion" Toggled="Visuals_Changed"/>
+         <TextBlock x:Name="ReactionStatus" Text="Start sharing on your phone to use reactions." TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"/>
+         <Grid x:Name="ReactionButtons" ColumnSpacing="8" RowSpacing="8">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <Button Content="Hearts" Tag="hearts" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Balloons" Tag="balloons" Grid.Column="1" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Thumbs up" Tag="thumbsUp" Grid.Row="1" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Thumbs down" Tag="thumbsDown" Grid.Row="1" Grid.Column="1" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Confetti" Tag="confetti" Grid.Row="2" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Fireworks" Tag="fireworks" Grid.Row="2" Grid.Column="1" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Rain" Tag="rain" Grid.Row="3" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+          <Button Content="Lasers" Tag="lasers" Grid.Row="3" Grid.Column="1" Click="Reaction_Click" HorizontalAlignment="Stretch"/>
+         </Grid>
+         <TextBlock Text="Hold a gesture for about a second, then lower your hands before trying another. Effects appear in other apps too." TextWrapping="Wrap" Foreground="{ThemeResource CamberMuted}"/>
+         <Expander Header="Gesture guide" HorizontalAlignment="Stretch"><TextBlock Text="One thumb up / down → thumbs up / down.&#x0a;One peace sign → balloons.&#x0a;Two peace signs → confetti.&#x0a;Two thumbs up → fireworks.&#x0a;Two thumbs down → rain.&#x0a;Two hands making a heart → hearts.&#x0a;Two horns signs → lasers." TextWrapping="Wrap"/></Expander>
+        </StackPanel>
+       </Expander>
+
+       <HyperlinkButton Content="Camera permission settings" Click="Permissions_Click" HorizontalAlignment="Left"/>
+      </StackPanel>
+     </Grid>
+     <StackPanel x:Name="ConnectPage" Visibility="Collapsed" Spacing="24" MaxWidth="720" HorizontalAlignment="Left">
+      <StackPanel Spacing="8"><TextBlock Text="A simple connection." FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap"/><TextBlock Text="Keep your phone and PC on the same private Wi-Fi." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></StackPanel>
+      <Border Style="{StaticResource CamberPanel}"><StackPanel Spacing="20">
+       <TextBlock Text="Pair your phone" FontSize="22" FontWeight="SemiBold"/>
+       <TextBlock Text="Open Camber on your phone and scan the code below. Your camera stays off until you tap Start sharing." TextWrapping="Wrap" Foreground="{ThemeResource CamberMuted}"/>
+       <ComboBox x:Name="NetworkChoice" Header="PC network address"/>
+       <Button Content="Create pairing code" Click="Pair_Click" Style="{StaticResource CamberPrimaryButton}"/>
+       <Border x:Name="QrPanel" Visibility="Collapsed" Background="White" Padding="20" CornerRadius="24" HorizontalAlignment="Left"><Image x:Name="PairingQr" Width="224" Height="224" AutomationProperties.Name="Pairing QR code. Scan in the Camber phone application."/></Border>
+       <TextBlock x:Name="PairingExpiry" Text="Pairing codes expire after two minutes and work once." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"/>
+      </StackPanel></Border>
+      <Expander Header="Need a hand connecting?"><StackPanel Spacing="12"><TextBlock Text="Allow Camber on your private network when Windows asks. Guest Wi-Fi may block communication between devices." TextWrapping="Wrap"/><TextBlock Text="If you use a VPN, allow local network access in its settings. Select your Wi-Fi or Ethernet address above." TextWrapping="Wrap"/></StackPanel></Expander>
+     </StackPanel>
+     <StackPanel x:Name="DevicesPage" Visibility="Collapsed" Spacing="24" MaxWidth="720" HorizontalAlignment="Left">
+      <StackPanel Spacing="8"><TextBlock Text="Your devices." FontSize="30" FontWeight="SemiBold"/><TextBlock Text="A familiar connection, always under your control." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></StackPanel>
+      <Border x:Name="DevicesEmpty" Style="{StaticResource CamberPanel}"><StackPanel Spacing="16"><TextBlock Text="Your phone belongs here." FontSize="22" FontWeight="SemiBold" TextWrapping="Wrap"/><TextBlock Text="Pair a phone to get started. You approve sharing on the phone every time." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/><Button Content="Connect a phone" Click="Connect_Click" Style="{StaticResource CamberPrimaryButton}" HorizontalAlignment="Left"/></StackPanel></Border>
+      <StackPanel x:Name="DeviceList" Spacing="16"/>
+     </StackPanel>
+     <StackPanel x:Name="SettingsPage" Visibility="Collapsed" Spacing="24" MaxWidth="720" HorizontalAlignment="Left">
+      <TextBlock Text="Make it feel like home." FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap"/>
+      <Border Style="{StaticResource CamberPanel}"><StackPanel Spacing="16"><TextBlock Text="Appearance" FontSize="22" FontWeight="SemiBold"/><TextBlock Text="Graphite and blue, just like Camber on your phone." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/><ComboBox x:Name="AppearanceChoice" Header="Colour theme" SelectedIndex="0" SelectionChanged="Theme_Changed"><ComboBoxItem Content="Graphite"/><ComboBoxItem Content="Light"/><ComboBoxItem Content="Use Windows setting"/></ComboBox></StackPanel></Border>
+      <Border Style="{StaticResource CamberPanel}"><StackPanel Spacing="12"><TextBlock Text="Your camera, your control" FontSize="22" FontWeight="SemiBold"/><TextBlock Text="Video stays on your local network. Camber does not record your camera or upload crash reports. Pairing remembers a phone; sharing still needs your approval." TextWrapping="Wrap" Foreground="{ThemeResource CamberMuted}"/><TextBlock Text="Closing Camber stops sharing. Leaving the phone app pauses its camera." Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></StackPanel></Border>
+      <Expander Header="Diagnostics"><StackPanel Spacing="16"><TextBlock x:Name="Diagnostics" Text="Waiting for camera service." TextWrapping="Wrap" IsTextSelectionEnabled="True"/><Button Content="Export diagnostic summary" Click="Export_Click" HorizontalAlignment="Left"/><TextBlock Text="No devices are certified yet. Quality and latency targets require physical-device testing." TextWrapping="Wrap" Foreground="{ThemeResource CamberMuted}"/></StackPanel></Expander>
+      <TextBlock Text="Camber 0.7 · Development build" FontSize="13" Foreground="{ThemeResource CamberMuted}"/>
+      <Button Content="Quit Camber and stop sharing" Click="Quit_Click" HorizontalAlignment="Left" Foreground="{ThemeResource CamberDanger}"/>
+     </StackPanel>
+    </StackPanel>
+   </ScrollViewer>
+  </NavigationView>
+  <Border x:Name="FooterPanel" Grid.Row="2" Padding="32,14" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource CamberBorder}"><TextBlock Text="Local connection · Camera only · Sharing starts on your phone" FontSize="12" Foreground="{ThemeResource CamberMuted}" TextWrapping="Wrap"/></Border>
+ </Grid>
+</Window>
