@@ -1,6 +1,9 @@
 # Camber 0.9 development checklist
 
-Current decision: **NOT APPROVED FOR DISTRIBUTION OR GITHUB PUSH**.
+Current decision: **Owner-authorized development source upload; production
+distribution remains unapproved.** The owner subsequently reported meeting-app,
+installer and cross-account checks OK and requested the GitHub push. That
+authorization does not certify the unchecked release requirements below.
 This supplements the [existing security/release gates](BETA-CHECKLIST.md).
 Remaining checks need evidence for the exact source and signed artifact hashes.
 Earlier-version results cannot certify this build. iOS remains deferred.
@@ -40,7 +43,7 @@ Earlier-version results cannot certify this build. iOS remains deferred.
 - [ ] Teams/Zoom/Discord/OBS/Windows Camera/Meet with a remote participant; concurrent consumers where supported.
 - [ ] Narrator/TalkBack, keyboard, high contrast, text/display scaling, reflow, reduced motion and measured animation smoothness.
 
-## Before deployment or GitHub push
+## Production distribution requirements
 
 - [ ] Review/commit currently untracked source, scan secrets and run hosted CI against exact locks/artifacts.
 - [ ] Independent security review and full dependency/license/native provenance/vulnerability review. Inventory alone is insufficient.

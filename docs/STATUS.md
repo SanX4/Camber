@@ -46,9 +46,10 @@ build/test-tool findings remain separately documented for review. This does not
 establish exploitability of the previous versions or constitute a security audit.
 
 The [connection guide](CONNECTING.md) and [release notes](RELEASE-NOTES-0.9.0-dev.1.md)
-are prepared for the requested SanX4/Camber repository. No source, packages or
-release have been uploaded. GitHub authentication and the remaining exact-candidate
-checks are still required. Per-run evidence is private under versioned artifacts.
+are prepared for the requested SanX4/Camber repository. The owner subsequently
+reported meeting-app, installer and cross-account checks OK and authorized the
+development source upload. Production release uploads still require the remaining
+exact-candidate checks. Per-run evidence is private under versioned artifacts.
 
 Previous status and implementation notes are preserved under
 [history/pre-0.9](history/pre-0.9/STATUS.md). No old result certifies this build.
